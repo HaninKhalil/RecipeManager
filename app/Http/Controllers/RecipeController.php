@@ -35,6 +35,10 @@ class RecipeController extends Controller
             'ingredients' => 'required',
             'instructions' => 'required',
         ]);
+
+        // Set user_id to null for now since we don't have authentication yet
+        $validated['user_id'] = null;
+
         Recipe::create($validated);
         return redirect()->route('recipes.index')->with('success', 'Recipe created successfully.');
     }
@@ -68,6 +72,10 @@ class RecipeController extends Controller
             'ingredients' => 'required',
             'instructions' => 'required',
         ]);
+
+        // Set user_id to null for now since we don't have authentication yet
+        $validated['user_id'] = null;
+
         $recipe = Recipe::findOrFail($id);
         $recipe->update($validated);
         return redirect()->route('recipes.index')->with('success', 'Recipe updated successfully.');
